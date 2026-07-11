@@ -145,8 +145,8 @@ export default function HeroScroll() {
               gap: '1rem',
               justifyContent: 'center'
             }}>
-              <Link to="/quote" className="btn" style={{ backgroundColor: 'white', color: 'black', border: '2px solid black', borderRadius: '50px', whiteSpace: 'nowrap' }}>Begin Your Project</Link>
-              <Link to="/3d-studio" className="btn" style={{ backgroundColor: 'white', color: 'black', border: '2px solid black', borderRadius: '50px', whiteSpace: 'nowrap' }}>Explore 3D Studio</Link>
+              <Link to="/quote" className="hero-btn">Begin Your Project</Link>
+              <Link to="/3d-studio" className="hero-btn">Explore 3D Studio</Link>
             </div>
           </div>
         </div>

@@ -21,7 +21,6 @@ export default function SplashScreen() {
     <div className={`splash-screen ${isFadingOut ? 'fade-out' : ''}`}>
       <div className="splash-content">
         <h1 className="splash-logo">MODUBUILD</h1>
-        <div className="splash-line"></div>
         <p className="splash-tagline">Architectural Precision. Refined Luxury.</p>
       </div>
     </div>

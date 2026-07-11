@@ -12,11 +12,13 @@ import ClientDashboard from './pages/ClientDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Contact from './pages/Contact';
 import SplashScreen from './components/ui/SplashScreen';
+import ScrollToTop from './components/ui/ScrollToTop';
 import './index.css';
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <SplashScreen />
       <Routes>
         <Route path="/" element={<Layout />}>
