@@ -28,13 +28,19 @@ export default function Footer() {
         
         <div className="footer-contact">
           <h3>Get in Touch</h3>
-          <p>hello@modubuild.com</p>
-          <p>+1 (800) 123-4567</p>
+          <p><a href="mailto:hr@icc-collab.com" style={{color: 'var(--color-light-stone)', textDecoration: 'none'}}>hr@icc-collab.com</a></p>
+          <p><a href="tel:+201031158933" style={{color: 'var(--color-light-stone)', textDecoration: 'none'}}>+201031158933</a></p>
           <Link to="/quote" className="btn btn-outline footer-btn">Request a Quote</Link>
         </div>
       </div>
       <div className="footer-bottom container">
-        <p>&copy; {new Date().getFullYear()} ModuBuild. All rights reserved.</p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', width: '100%', gap: '1rem' }}>
+          <p>&copy; {new Date().getFullYear()} ModuBuild. All rights reserved.</p>
+          <p style={{ textAlign: 'right' }}>
+            Developed by <a href="https://www.icc-collab.com/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--color-muted-bronze)', fontWeight: 'bold', textDecoration: 'none'}}>ICC company</a>
+            <br/><span style={{fontSize: '0.85rem', fontStyle: 'italic', color: 'var(--color-light-stone)'}}>You imagine, We build</span>
+          </p>
+        </div>
       </div>
     </footer>
   );
