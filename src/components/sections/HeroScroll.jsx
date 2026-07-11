@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './HeroScroll.css';
 
-const FRAME_COUNT = 120;
+const FRAME_COUNT = 382;
 const FRAME_START = 1;
 
 export default function HeroScroll() {
@@ -23,7 +23,7 @@ export default function HeroScroll() {
     for (let i = 0; i < FRAME_COUNT; i++) {
       const img = new Image();
       const frameNum = (i + FRAME_START).toString().padStart(4, '0');
-      img.src = `/hero/frames/frame_${frameNum}.webp`;
+      img.src = `/hero/frames/frame_${frameNum}.jpg`;
       
       img.onload = () => {
         loadedCount++;
