@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './HeroScroll.css';
 
-const FRAME_COUNT = 382;
+const FRAME_COUNT = 306;
 const FRAME_START = 1;
 
 export default function HeroScroll() {
