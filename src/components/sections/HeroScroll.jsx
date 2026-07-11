@@ -26,10 +26,14 @@ export default function HeroScroll() {
         loadedCount++;
         setImagesLoaded(loadedCount);
         if (i === 0 && canvasRef.current) {
-          // Draw first frame immediately
           const ctx = canvasRef.current.getContext('2d');
           drawImageProp(ctx, img, 0, 0, canvasRef.current.width, canvasRef.current.height);
         }
+      };
+      img.onerror = () => {
+        console.warn(`Failed to load frame ${frameNum}`);
+        loadedCount++;
+        setImagesLoaded(loadedCount);
       };
       loadedImages.push(img);
     }
@@ -131,9 +135,18 @@ export default function HeroScroll() {
         {/* Overlay Content */}
         <div className="hero-overlay" style={{ alignItems: 'flex-end', paddingBottom: '15vh' }}>
           <div className="hero-content fade-in">
-            <div className="hero-actions" ref={buttonsRef} style={{ opacity: 0, pointerEvents: 'none', transform: 'translateY(20px)', transition: 'all 0.5s ease-in-out' }}>
-              <Link to="/quote" className="btn" style={{ backgroundColor: 'white', color: 'black', border: '2px solid black', borderRadius: '50px' }}>Begin Your Project</Link>
-              <Link to="/3d-studio" className="btn" style={{ backgroundColor: 'white', color: 'black', border: '2px solid black', borderRadius: '50px' }}>Explore 3D Studio</Link>
+            <div className="hero-actions" ref={buttonsRef} style={{ 
+              opacity: 0, 
+              pointerEvents: 'none', 
+              transform: 'translateY(20px)', 
+              transition: 'all 0.5s ease-in-out',
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '1rem',
+              justifyContent: 'center'
+            }}>
+              <Link to="/quote" className="btn" style={{ backgroundColor: 'white', color: 'black', border: '2px solid black', borderRadius: '50px', whiteSpace: 'nowrap' }}>Begin Your Project</Link>
+              <Link to="/3d-studio" className="btn" style={{ backgroundColor: 'white', color: 'black', border: '2px solid black', borderRadius: '50px', whiteSpace: 'nowrap' }}>Explore 3D Studio</Link>
             </div>
           </div>
         </div>
@@ -149,17 +162,19 @@ export default function HeroScroll() {
             alignItems: 'center',
             justifyContent: 'center',
             color: '#d4af37',
-            fontFamily: 'sans-serif'
+            fontFamily: 'sans-serif',
+            padding: '1rem',
+            textAlign: 'center'
           }}>
             <div style={{
-              width: '40px', height: '40px', 
+              width: 'clamp(30px, 5vw, 40px)', height: 'clamp(30px, 5vw, 40px)', 
               border: '3px solid rgba(212, 175, 55, 0.3)', 
               borderTop: '3px solid #d4af37', 
               borderRadius: '50%', 
               animation: 'spin 1s linear infinite',
               marginBottom: '1rem'
             }}></div>
-            <p style={{ letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.9rem' }}>
+            <p style={{ letterSpacing: 'clamp(1px, 2vw, 2px)', textTransform: 'uppercase', fontSize: 'clamp(0.75rem, 3vw, 0.9rem)' }}>
               Preparing Experience... {Math.round((imagesLoaded / FRAME_COUNT) * 100)}%
             </p>
             <style>{`
