@@ -11,6 +11,9 @@ export default function HeroScroll() {
   const buttonsRef = useRef(null);
   const [images, setImages] = useState([]);
   const [imagesLoaded, setImagesLoaded] = useState(0);
+  const targetFrame = useRef(0);
+  const currentFrame = useRef(0);
+  const requestRef = useRef(null);
 
   // Preload images
   useEffect(() => {
@@ -44,52 +47,74 @@ export default function HeroScroll() {
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current || images.length === 0) return;
 
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    
     const setCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      updateFrame();
+      canvasRef.current.width = window.innerWidth;
+      canvasRef.current.height = window.innerHeight;
+      // Force an immediate draw on resize
+      const frameIndex = Math.min(FRAME_COUNT - 1, Math.max(0, Math.floor(currentFrame.current)));
+      const img = images[frameIndex];
+      if (img && img.complete) {
+        const ctx = canvasRef.current.getContext('2d');
+        drawImageProp(ctx, img, 0, 0, canvasRef.current.width, canvasRef.current.height);
+      }
     };
 
-    const updateFrame = () => {
+    const updateTarget = () => {
+      if (!containerRef.current) return;
       const scrollTop = document.documentElement.scrollTop;
       const maxScroll = containerRef.current.scrollHeight - window.innerHeight;
       const scrollFraction = Math.max(0, Math.min(1, scrollTop / maxScroll));
       
-      const frameIndex = Math.min(
-        FRAME_COUNT - 1,
-        Math.floor(scrollFraction * FRAME_COUNT)
-      );
-
-      const img = images[frameIndex];
-      if (img && img.complete) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawImageProp(ctx, img, 0, 0, canvas.width, canvas.height);
-      }
-
-      if (buttonsRef.current) {
-        if (frameIndex >= FRAME_COUNT - 5) {
-          buttonsRef.current.style.opacity = '1';
-          buttonsRef.current.style.pointerEvents = 'auto';
-          buttonsRef.current.style.transform = 'translateY(0)';
-        } else {
-          buttonsRef.current.style.opacity = '0';
-          buttonsRef.current.style.pointerEvents = 'none';
-          buttonsRef.current.style.transform = 'translateY(20px)';
-        }
-      }
+      targetFrame.current = scrollFraction * (FRAME_COUNT - 1);
     };
 
-    window.addEventListener('scroll', updateFrame);
+    const renderLoop = () => {
+      const diff = targetFrame.current - currentFrame.current;
+      
+      // Interpolate for smooth cinematic feel
+      if (Math.abs(diff) > 0.01) {
+        currentFrame.current += diff * 0.08; // 0.08 is the smoothing factor
+        
+        const frameIndex = Math.min(
+          FRAME_COUNT - 1,
+          Math.max(0, Math.floor(currentFrame.current))
+        );
+
+        const img = images[frameIndex];
+        if (img && img.complete && canvasRef.current) {
+          const canvas = canvasRef.current;
+          const ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          drawImageProp(ctx, img, 0, 0, canvas.width, canvas.height);
+        }
+
+        if (buttonsRef.current) {
+          if (frameIndex >= FRAME_COUNT - 5) {
+            buttonsRef.current.style.opacity = '1';
+            buttonsRef.current.style.pointerEvents = 'auto';
+            buttonsRef.current.style.transform = 'translateY(0)';
+          } else {
+            buttonsRef.current.style.opacity = '0';
+            buttonsRef.current.style.pointerEvents = 'none';
+            buttonsRef.current.style.transform = 'translateY(20px)';
+          }
+        }
+      }
+      
+      requestRef.current = requestAnimationFrame(renderLoop);
+    };
+
+    window.addEventListener('scroll', updateTarget, { passive: true });
     window.addEventListener('resize', setCanvasSize);
     
     setCanvasSize();
+    updateTarget();
+    requestRef.current = requestAnimationFrame(renderLoop);
 
     return () => {
-      window.removeEventListener('scroll', updateFrame);
+      window.removeEventListener('scroll', updateTarget);
       window.removeEventListener('resize', setCanvasSize);
+      cancelAnimationFrame(requestRef.current);
     };
   }, [images]);
 

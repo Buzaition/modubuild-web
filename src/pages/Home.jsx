@@ -155,10 +155,7 @@ export default function Home() {
                 <h4>Project Status: Cairo Loft</h4>
                 <span className="badge bg-bronze">On Track</span>
               </div>
-              <div className="progress-bar mb-sm">
-                <div className="progress-fill" style={{width: '65%'}}></div>
-              </div>
-              <p className="text-sm color-light-stone mb-md">Phase 3: Flooring & Wall Finishes (65% Complete)</p>
+              <p className="text-sm color-light-stone mb-md">Phase 3: Flooring & Wall Finishes</p>
               <div className="grid-2 gap-sm">
                 <div className="bg-charcoal p-sm rounded text-center">
                   <div className="text-xs color-light-stone">Budget Used</div>
