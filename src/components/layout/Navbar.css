@@ -5,7 +5,11 @@
   width: 100%;
   z-index: 1000;
   padding: var(--space-md) 0;
-  transition: all var(--transition-base);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-hidden {
+  transform: translateY(-100%);
 }
 
 .navbar-scrolled {
