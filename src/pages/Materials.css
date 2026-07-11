@@ -1,0 +1,107 @@
+.materials-filters {
+  display: flex;
+  justify-content: center;
+}
+
+.filter-scroll {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  padding-bottom: var(--space-sm);
+  scrollbar-width: none; /* Firefox */
+}
+
+.filter-scroll::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.filter-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  background-color: var(--color-warm-beige);
+  color: var(--color-deep-charcoal);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background-color: var(--color-deep-charcoal);
+  color: var(--color-white);
+}
+
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+.material-card {
+  background: var(--color-white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform var(--transition-base);
+  border: 1px solid var(--color-light-stone);
+}
+
+.material-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.material-img-wrapper {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-light-stone);
+}
+
+.material-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.material-card:hover .material-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.material-info {
+  padding: var(--space-md);
+}
+
+.material-category {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-concrete-gray);
+  font-weight: 600;
+}
+
+.material-price {
+  font-weight: 600;
+  color: var(--color-muted-bronze);
+}
+
+.material-info h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-sm);
+}
+
+.material-specs {
+  font-size: 0.85rem;
+  color: var(--color-concrete-gray);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.material-specs span {
+  color: var(--color-deep-charcoal);
+  font-weight: 500;
+}
+
+.btn-full {
+  width: 100%;
+}

@@ -1,0 +1,73 @@
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import clsx from 'clsx';
+import './Navbar.css';
+
+export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location]);
+
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: '3D Studio', path: '/3d-studio' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Materials', path: '/materials' },
+  ];
+
+  return (
+    <header className={clsx('navbar', isScrolled && 'navbar-scrolled')}>
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo">
+          ModuBuild
+        </Link>
+        
+        <nav className="navbar-links desktop-only">
+          {navLinks.map((link) => (
+            <Link key={link.name} to={link.path} className="nav-link">
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="navbar-actions desktop-only">
+          <Link to="/quote" className="btn btn-primary">Start Your Project</Link>
+        </div>
+
+        <button 
+          className="mobile-menu-toggle mobile-only"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu glass-panel">
+          {navLinks.map((link) => (
+            <Link key={link.name} to={link.path} className="mobile-nav-link">
+              {link.name}
+            </Link>
+          ))}
+          <Link to="/quote" className="btn btn-primary mobile-cta">Start Your Project</Link>
+        </div>
+      )}
+    </header>
+  );
+}

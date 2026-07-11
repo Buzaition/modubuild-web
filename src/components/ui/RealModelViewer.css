@@ -1,0 +1,95 @@
+.model-viewer-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: var(--color-white);
+  overflow: hidden;
+}
+
+.modubuild-model-viewer {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  --poster-color: transparent;
+}
+
+/* Custom Poster Loader */
+.custom-poster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-deep-charcoal);
+  overflow: hidden;
+}
+
+.poster-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+
+.animated-furniture-loader {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  animation: pulseOpacity 2s infinite;
+}
+
+.sofa-icon {
+  animation: bounceFurniture 2s infinite ease-in-out;
+}
+
+@keyframes bounceFurniture {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Custom Progress Bar */
+.progress-bar {
+  display: block;
+  width: 33%;
+  height: 10%;
+  max-height: 4px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.progress-bar.hide {
+  visibility: hidden;
+  transition: visibility 0.3s;
+}
+
+.update-bar {
+  background-color: var(--color-muted-bronze);
+  width: 0%;
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+model-viewer::part(default-progress-bar) {
+  display: none;
+}

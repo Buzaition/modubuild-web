@@ -1,0 +1,65 @@
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-deep-charcoal);
+  color: var(--color-ivory);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+}
+
+.splash-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-content {
+  text-align: center;
+  animation: splashFadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.splash-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: 8px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.splash-line {
+  width: 0;
+  height: 1px;
+  background-color: var(--color-bronze);
+  margin: 0 auto 20px auto;
+  animation: drawLine 1s ease-in-out 0.5s forwards;
+}
+
+.splash-tagline {
+  font-family: var(--font-sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 1s forwards;
+  color: var(--color-light-stone);
+}
+
+@keyframes splashFadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drawLine {
+  0% { width: 0; }
+  100% { width: 100px; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
