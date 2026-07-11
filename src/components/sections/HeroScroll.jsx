@@ -138,8 +138,34 @@ export default function HeroScroll() {
           </div>
         </div>
 
-        {imagesLoaded < FRAME_COUNT * 0.1 && (
-          <div className="hero-loading">Loading experience...</div>
+        {imagesLoaded < FRAME_COUNT && (
+          <div style={{
+            position: 'absolute',
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: '#0a0a0a',
+            zIndex: 10,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#d4af37',
+            fontFamily: 'sans-serif'
+          }}>
+            <div style={{
+              width: '40px', height: '40px', 
+              border: '3px solid rgba(212, 175, 55, 0.3)', 
+              borderTop: '3px solid #d4af37', 
+              borderRadius: '50%', 
+              animation: 'spin 1s linear infinite',
+              marginBottom: '1rem'
+            }}></div>
+            <p style={{ letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.9rem' }}>
+              Preparing Experience... {Math.round((imagesLoaded / FRAME_COUNT) * 100)}%
+            </p>
+            <style>{`
+              @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+            `}</style>
+          </div>
         )}
       </div>
     </div>
