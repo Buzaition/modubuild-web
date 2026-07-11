@@ -75,21 +75,33 @@ export default function HeroScroll() {
       if (Math.abs(diff) > 0.01) {
         currentFrame.current += diff * 0.08; // 0.08 is the smoothing factor
         
-        const frameIndex = Math.min(
-          FRAME_COUNT - 1,
-          Math.max(0, Math.floor(currentFrame.current))
-        );
+        const exactFrame = Math.max(0, Math.min(FRAME_COUNT - 1, currentFrame.current));
+        const frame1Index = Math.floor(exactFrame);
+        const frame2Index = Math.min(FRAME_COUNT - 1, Math.ceil(exactFrame));
+        const blendFraction = exactFrame - frame1Index;
 
-        const img = images[frameIndex];
-        if (img && img.complete && canvasRef.current) {
+        const img1 = images[frame1Index];
+        const img2 = images[frame2Index];
+
+        if (img1 && img1.complete && canvasRef.current) {
           const canvas = canvasRef.current;
           const ctx = canvas.getContext('2d');
+          
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          drawImageProp(ctx, img, 0, 0, canvas.width, canvas.height);
+          
+          ctx.globalAlpha = 1;
+          drawImageProp(ctx, img1, 0, 0, canvas.width, canvas.height);
+
+          if (blendFraction > 0 && img2 && img2.complete) {
+            ctx.globalAlpha = blendFraction;
+            drawImageProp(ctx, img2, 0, 0, canvas.width, canvas.height);
+          }
+          
+          ctx.globalAlpha = 1;
         }
 
         if (buttonsRef.current) {
-          if (frameIndex >= FRAME_COUNT - 5) {
+          if (frame1Index >= FRAME_COUNT - 5) {
             buttonsRef.current.style.opacity = '1';
             buttonsRef.current.style.pointerEvents = 'auto';
             buttonsRef.current.style.transform = 'translateY(0)';
