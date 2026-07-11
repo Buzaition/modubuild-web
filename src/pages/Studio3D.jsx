@@ -48,6 +48,8 @@ export default function Studio3D() {
               ))}
             </div>
           </div>
+
+          <div className="sidebar-section">
             <h3>View Controls</h3>
             <div className="toggle-grid">
               <button 
