@@ -1,6 +1,6 @@
 .hero-scroll-container {
   /* Make the container tall enough to scroll through frames */
-  height: 400vh;
+  height: 1000vh;
   position: relative;
   background-color: var(--color-deep-charcoal);
 }
