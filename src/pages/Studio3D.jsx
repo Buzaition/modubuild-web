@@ -13,7 +13,6 @@ const models = [
 export default function Studio3D() {
   const [isNight, setIsNight] = useState(false);
   const [showMeasurements, setShowMeasurements] = useState(false);
-  const [activeMaterial, setActiveMaterial] = useState('marble');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [activeModel, setActiveModel] = useState(models[1]);
 
@@ -49,32 +48,6 @@ export default function Studio3D() {
               ))}
             </div>
           </div>
-
-          <div className="sidebar-section">
-            <h3>Material Options</h3>
-            <div className="material-picker">
-              <div 
-                className={`material-option ${activeMaterial === 'marble' ? 'active' : ''}`}
-                onClick={() => setActiveMaterial('marble')}
-              >
-                <img src="/materials/marble.webp" alt="Marble" />
-              </div>
-              <div 
-                className={`material-option ${activeMaterial === 'wood' ? 'active' : ''}`}
-                onClick={() => setActiveMaterial('wood')}
-              >
-                <img src="/materials/natural-wood.webp" alt="Wood" />
-              </div>
-              <div 
-                className={`material-option ${activeMaterial === 'stone' ? 'active' : ''}`}
-                onClick={() => setActiveMaterial('stone')}
-              >
-                <img src="/materials/concrete-gray-stone.webp" alt="Stone" />
-              </div>
-            </div>
-          </div>
-
-          <div className="sidebar-section">
             <h3>View Controls</h3>
             <div className="toggle-grid">
               <button 
@@ -131,7 +104,7 @@ export default function Studio3D() {
               <div className="cost-value font-serif color-bronze">{activeModel.cost}</div>
               <div className="cost-breakdown">
                 <div className="flex-between"><span>Base Structure</span><span>60%</span></div>
-                <div className="flex-between"><span>Materials ({activeMaterial})</span><span>25%</span></div>
+                <div className="flex-between"><span>Materials</span><span>25%</span></div>
                 <div className="flex-between"><span>Labor & Finishing</span><span>15%</span></div>
               </div>
             </div>

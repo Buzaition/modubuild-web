@@ -32,9 +32,6 @@ export default function RealModelViewer({ src, poster, alt, autoRotate = true, i
             <span className="color-white font-bold tracking-wide">LOADING 3D SPACE...</span>
           </div>
         </div>
-        <div className="progress-bar" slot="progress-bar">
-          <div className="update-bar"></div>
-        </div>
       </model-viewer>
     </div>
   );
