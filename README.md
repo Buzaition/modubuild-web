@@ -1,16 +1,50 @@
-# React + Vite
+# ModuBuild - Premium Architecture & Construction Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+ModuBuild is a state-of-the-art web platform dedicated to architectural precision and refined luxury. It seamlessly integrates premium construction services, bespoke interior design, and immersive 3D previews to provide clients with a tailored building experience.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Cinematic Hero Scroll:** A buttery-smooth, interactive 3D video sequence powered by high-resolution frame rendering.
+- **Interactive 3D Studio:** An advanced WebGL-based viewer allowing clients to inspect architectural designs in full 3D from any device.
+- **Materials Library:** A curated showcase of premium finishes, textures, and construction materials.
+- **Client & Admin Dashboards:** Dedicated portals for project tracking, quoting, and administrative management.
+- **Fully Responsive:** Carefully optimized for mobile, tablet, and desktop interfaces.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend Framework:** React
+- **Build Tool:** Vite
+- **3D Rendering:** Google `<model-viewer>`
+- **Styling:** Custom CSS with modern responsive utility classes
 
-## Expanding the Oxlint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+To run this project locally:
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Build for production:
+   ```bash
+   npm run build
+   ```
+
+---
+
+<br />
+
+### 💡 Developed by ICC
+**You imagine, We build.**
+
+Designed and engineered by **ICC company**  
+*Lead Developer: Eng. Abuzaid Saad*
+
+- **Website:** [www.icc-collab.com](https://www.icc-collab.com/)
+- **Email:** [hr@icc-collab.com](mailto:hr@icc-collab.com)
+- **Phone:** +201031158933
